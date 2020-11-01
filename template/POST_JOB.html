@@ -1,0 +1,65 @@
+{% extends 'base.html' %} 
+{% load bootstrap4 %}
+    {% block content %}
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{obj.title}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+
+                    <div class="descript_wrap white-bg">
+                        <div class="single_wrap">
+                            <h4>POST JOB</h4>
+                            <p>{{obj.discription}}</p>
+                        </div>
+                    </div>
+                    <div class="apply_job_form white-bg">
+                        
+
+
+                    {% if Form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                      {% endif %}
+                      
+                    
+
+                 <form  method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form Form %}
+                        {% buttons %}
+                            <button class="boxed-btn3 w-100" type="submit">Apply Now</button>
+                        {% endbuttons %}
+
+                    </form>
+
+                        
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

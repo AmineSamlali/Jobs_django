@@ -1,0 +1,10 @@
+- MODELSE :
+    - tite 
+    - Part-time or Full-time
+    - discription
+    - Published_on 
+    - Vacancy
+    - Salary
+    - Location
+    - Job Nature
+

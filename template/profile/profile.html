@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+
+    {% block content %}
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{obj.title}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <div class="job_details_area ">
+        <div class="container">
+                <div class="col-lg-8 mx-auto ">
+                    <div class="job_details_header">
+
+                    </div>
+
+
+
+
+
+                
+                    {# Display a form #}
+
+                        
+
+
+
+
+
+                    </div>
+                </div>
+                <div class="col-lg-7 mx-auto">
+                    <div class="job_sumary ">
+                        <div class="summery_header">
+                            <h1>-Profile Account-</h1>
+                        </div>
+                        <div class="job_content mx-auto ">
+                            <ul>
+                                <form method="GET" enctype="multipart/form-data" >
+                                {% if profile_id.sity is  None  or profile_id.phone is None or profile_id.image is None %}
+
+                                    <li>username : <span>{{profile_id}}</span></li>
+                                    <li>First name : <span>{{profile_id.user.first_name}}</span></li>
+                                    <li>Last name : <span>{{profile_id.user.last_name}}</span></li>
+                                    <li>Email address : <span>{{profile_id.user.email}}</span></li>
+                                    <li>phone : <span>{{profile_id.phone}}</span></li>
+                                    <li>image : <span>{{profile_id.image}}</span></li>
+                                    <li>Contary : <span>{{profile_id.sity}}</span></li>
+
+                                        <a href="{% url  'profile_edit' %}" class="boxed-btn3 w-100 mt-2">Complate profile.</a>
+
+                                    {% else %}
+
+                                    <li>username : <span>{{profile_id}}</span></li>
+                                    <li>First name : <span>{{profile_id.user.first_name}}</span></li>
+                                    <li>Last name : <span>{{profile_id.user.last_name}}</span></li>
+                                    <li>Email address : <span>{{profile_id.user.email}}</span></li>
+                                    <li>phone : <span>{{profile_id.phone}}</span></li>
+                                    <li>image : <span>{{profile_id.image}}</span></li>
+                                    <li>Contery : <span>{{profile_id.sity}}</span></li>
+                                    <a href="{% url  'profile_edit' %}" class="boxed-btn3 w-100 mt-2">Edit profile.</a>
+                                
+
+
+                                    {% endif %}
+
+
+                                </form>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="job_location_wrap">
+                        <div class="job_lok_inner">
+                            <div id="map" style="height: 200px;"></div>
+
+                            
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ 
+{% endblock %}
+

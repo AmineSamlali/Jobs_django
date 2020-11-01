@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+
+    {% block content %}
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    
+                    {% if obji %}
+                    <div class="bradcam_text">
+                        <h3>{{obji.title}}</h3>
+                    </div>
+
+                        {% else %}
+                        <div class="bradcam_text">
+                            <h3>{{obj.title}}</h3>
+                        </div>
+    
+                    {% endif %}
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+{% if obji %}
+<div class="job_details_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="job_details_header">
+                    <div class="single_jobs white-bg d-flex justify-content-between">
+                        <div class="jobs_left d-flex align-items-center">
+                            <img src="{{ obji.imag.url }}" width="82" height="82" style="border-right-width: 0px;margin-right: 22px;">
+                            <div class="jobs_conetent">
+                                <a href="#"><h4>{{obji.title}}</h4></a>
+                                <div class="links_locat d-flex align-items-center">
+                                    <div class="location">
+                                        <p> <i class="fa fa-map-marker"></i> {{obji.City}}</p>
+                                    </div>
+                                    <div class="location">
+                                        <p> <i class="fa fa-clock-o"></i> {{obji.Job_Nature}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jobs_right">
+                            <div class="apply_now">
+                                <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    {% else %}
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="job_details_header">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <img src="{{ obj.imag.url }}" width="82" height="82" style="border-right-width: 0px;margin-right: 22px;">
+                                <div class="jobs_conetent">
+                                    <a href="#"><h4>{{obj.title}}</h4></a>
+                                    <div class="links_locat d-flex align-items-center">
+                                        <div class="location">
+                                            <p> <i class="fa fa-map-marker"></i> {{obj.City}}</p>
+                                        </div>
+                                        <div class="location">
+                                            <p> <i class="fa fa-clock-o"></i> {{obj.Job_Nature}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+{% endif %}
+    
+
+
+
+
+
+
+
+
+                            {% if obji %}
+                            <div class="descript_wrap white-bg">
+                                <div class="single_wrap">
+                                    <h4>Job description</h4>        
+                            <p>{{obji.discription}}</p>
+                            {% else %}
+                            <div class="descript_wrap white-bg">
+                                <div class="single_wrap">
+                                    <h4>Job description</h4>
+        
+                                            <p>{{obj.discription}}</p>
+
+
+                            {% endif %}
+                                
+                            <p>{{obj.discription}}</p>
+                        </div>
+                    </div>
+                    <div class="apply_job_form white-bg">
+
+
+
+
+                        
+
+                    <form  method="post" enctype="multipart/form-data">
+                    {% if obji %}
+
+                    {% else %}
+                        {% if user.is_authenticated %}
+
+                            {% csrf_token %}
+                            {% bootstrap_form form_auth %}
+                            {% buttons %}
+                                <button class="boxed-btn3 w-100" type="submit">Apply Now</button>
+                            {% endbuttons %}
+                        {% else %}
+                            {% csrf_token %}
+                            {% bootstrap_form Form %}
+                            {% buttons %}
+                                <button class="boxed-btn3 w-100" type="submit">Apply Now</button>
+                            {% endbuttons %}
+
+
+                                    </form>
+                    {% endif %}
+                    {% endif %}
+
+
+
+                    </div>
+                </div>
+                {% if obji %}
+                <div class="col-lg-4">
+                    <div class="job_sumary">
+                        <div class="summery_header">
+                            <h3>Job Summery</h3>
+                        </div>
+                        <div class="job_content">
+                            <ul>
+                                <li>Published on: <span>{{obji.Published_on |date:"d M Y" }}</span></li>
+                                <li>Published By: <span>{{obji.auther}}(you)</span></li>
+                                <li>Vacancy: <span>{{obji.Vacancy}}</span></li>
+                                <li>Salary: <span>{{obji.Salary}}k/y</span></li>
+                                <li>Location: <span>{{obji.City}}</span></li>
+                                <li>Job Nature: <span> {{obji.Job_Nature}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="share_wrap d-flex">
+                        <span>Share at:</span>
+                        <ul>
+                            <li><a href="#"> <i class="fa fa-facebook"></i></a> </li>
+                            <li><a href="#"> <i class="fa fa-google-plus"></i></a> </li>
+                            <li><a href="#"> <i class="fa fa-twitter"></i></a> </li>
+                            <li><a href="#"> <i class="fa fa-envelope"></i></a> </li>
+                        </ul>
+                    </div>
+                    <div class="job_location_wrap">
+                        <div class="job_lok_inner">
+                            <div id="map" style="height: 200px;"></div>
+                            
+                          </div>
+                    </div>
+                </div>
+
+                {% else %}
+                <div class="col-lg-4">
+                    <div class="job_sumary">
+                        <div class="summery_header">
+                            <h3>Job Summery</h3>
+                        </div>
+                        <div class="job_content">
+                            <ul>
+                                <li>Published on: <span>{{obj.Published_on |date:"d M Y" }}</span></li>
+                                <li>Published By: <span>{{obj.auther}}</span></li>
+                                <li>Vacancy: <span>{{obj.Vacancy}}</span></li>
+                                <li>Salary: <span>{{obj.Salary}}k/y</span></li>
+                                <li>Location: <span>{{obj.City}}</span></li>
+                                <li>Job Nature: <span> {{obj.Job_Nature}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="share_wrap d-flex">
+                        <span>Share at:</span>
+                        <ul>
+                            <li><a href="#"> <i class="fa fa-facebook"></i></a> </li>
+                            <li><a href="#"> <i class="fa fa-google-plus"></i></a> </li>
+                            <li><a href="#"> <i class="fa fa-twitter"></i></a> </li>
+                            <li><a href="#"> <i class="fa fa-envelope"></i></a> </li>
+                        </ul>
+                    </div>
+                    <div class="job_location_wrap">
+                        <div class="job_lok_inner">
+                            <div id="map" style="height: 200px;"></div>
+                            
+                          </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+ 
+{% endblock %}
+

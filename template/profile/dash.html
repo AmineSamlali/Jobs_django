@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+
+    {% block content %}
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{obj.title}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <div class="job_details_area ">
+        <div class="container">
+                <div class="col-lg-8 mx-auto ">
+                    <div class="job_details_header">
+
+                    </div>
+
+
+
+
+
+                
+                    {# Display a form #}
+
+                        
+
+
+
+    
+
+                    </div>
+                </div>
+                <div class="col-lg-7 mx-auto">
+                    <div class="job_sumary ">
+                        <div class="summery_header">
+                            <h1>-My Post Jobs-</h1>
+                        </div>
+                        <div class="job_content mx-auto ">
+
+                                
+                                {% if counts > 0 %}
+                                {% for job in jobs %}
+
+                                    <ul>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="single_jobs white-bg d-flex justify-content-between">
+                                                <div class="jobs_left d-flex align-items-center">
+        
+                                <img src="{{ job.imag.url }}" width="82" height="82" style="border-right-width: 0px;margin-right: 22px;">
+
+
+
+                                <div class="jobs_conetent">
+
+
+                                    {% if  job.title|length > 32 %}
+                                        <a href="{% url 'id' job.slug %}"><h4>{{job.title|slice:'49'}}...</h4></a>
+                                    {% else %}
+
+                                        <a href="{% url 'id' job.slug %}"><h4>{{job.title}}</h4></a>
+
+                                    {% endif %}
+
+                                    <div class="links_locat d-flex align-items-center">
+                                        <div class="location">
+                                            <p> <i class="fa fa-map-marker"></i> {{job.City}}</p>
+                                        </div>
+                                        <div class="location">
+                                            <p> <i class="fa fa-clock-o"></i> {{job.Job_Nature}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a>
+                                    <a href="{% url 'dash_edit' job.slug %}" class="boxed-btn3">Edite Job</a>
+                                </div>
+                                <div class="date">
+                                    <p>Date line: {{job.Published_on|date:"d M Y"}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        
+                    {% endfor %}
+                                {% else %}
+<h1>Sorry you don't have any Posts Jobs</h1>
+                                {% endif %}
+
+
+
+  
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="job_location_wrap">
+                        <div class="job_lok_inner">
+                            <div id="map" style="height: 200px;"></div>
+
+                            
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ 
+{% endblock %}
+
